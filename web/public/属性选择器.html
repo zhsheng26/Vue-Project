@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        [title~=name] {
+            color: #42b983;
+        }
+
+        [title|=mine] {
+            color: #ddccdd;
+        }
+
+        [title=select] {
+            color: blue;
+        }
+
+        [title$=user] {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <p title="select">选择器</p>
+    <p title="select name">选择器</p>
+    <p title="mine">选择器</p>
+    <p title="mine.user">选择器</p>
+</div>
+</body>
+</html>
