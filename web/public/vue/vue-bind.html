@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../static/js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <div v-text="username"></div>
+    城市：
+    <span v-html="city"></span>
+    地址：{{address}}
+    <div>
+        级别：{{level()}}
+    </div>
+    <div>
+        详细地址：{{detail}}
+    </div>
+</div>
+
+<script>
+    let vm = new Vue({
+        el: "#app",
+        data: {
+            username: "zhsheng",
+            province: "AnHui",
+            country: "China",
+            city: "<h1>合肥</h1>",
+            age: 12,
+            detail: ""
+        },
+        created: function () {
+            this.detail = this.country + this.province
+        },
+        //方法属性
+        methods: {
+            level: function () {
+                if (this.age > 18) {
+                    return "成人"
+                } else {
+                    return "少年"
+                }
+            }
+        },
+        //计算属性，对依赖的属性进行了缓存
+        computed: {
+            address: {
+                get: function () {
+                    return this.country + this.province
+                },
+                set: function (value) {
+                    let arr = value.split(",");
+                    this.country = arr[0];
+                    this.province = arr[1];
+                }
+            }
+        },
+        //watch,监听的属性变化了才会执行
+        watch: {
+            country: function () {
+                this.detail = this.country + this.province
+            },
+            province: function () {
+                this.detail = this.country + this.province
+            }
+        }
+    });
+</script>
+</body>
+</html>

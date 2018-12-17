@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../static/js/vue.js"></script>
+    <style>
+        .active {
+            color: #42b983;
+        }
+
+        .big {
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <!--class的对象绑定-->
+    <div :class="{active:normal}" @click="changeColor">
+        世界和平
+    </div>
+    <!--isActive,big是data里的变量-->
+    <div :class="[isActive,big]" @click="changeContent">
+        中国胜利
+    </div>
+    <!--对象方式-->
+    <div :style="textStyle" @click="changeTextColor">
+        中国加油
+    </div>
+    <!--数组的方式-->
+    <div :style="[textStyle,{fontSize:'30px'}]" @click="changeTextColor">
+        少年加油
+    </div>
+
+
+</div>
+<script>
+    let vm = new Vue({
+        el: "#app",
+        data: {
+            normal: false,
+            isActive: "",
+            big: "big",
+            textStyle: {
+                color: "black"
+            }
+        },
+        methods: {
+            changeColor: function () {
+                this.normal = !this.normal
+            },
+            changeContent: function () {
+                this.isActive = this.isActive === "active" ? "" : "active"
+            },
+            changeTextColor: function () {
+                this.textStyle.color = this.textStyle.color === "black" ? "red" : "black"
+            }
+
+        }
+    });
+</script>
+</body>
+</html>
