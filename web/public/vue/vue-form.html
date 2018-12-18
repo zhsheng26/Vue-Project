@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../static/js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <label for="all">全选</label><input id="all" type="checkbox" @change="checkAll()" v-model="isAll">
+    <!--v-model绑定是input的value-->
+    <label for="apple">
+        苹果
+        <input id="apple" type="checkbox" v-model="checkedTags" value="Apple">
+    </label>
+    <label for="orange">
+        橘子
+        <input id="orange" type="checkbox" v-model="checkedTags" value="Orange">
+    </label>
+    <label for="banana">
+        香蕉
+        <input id="banana" type="checkbox" v-model="checkedTags" value="Banana">
+    </label>
+    <div v-show="checkedTags.length!==0">
+        {{checkedTags}}
+    </div>
+</div>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            isAll: false,
+            tags: ["Apple", "Orange", "Banana"],
+            checkedTags: []
+        },
+        methods: {
+            checkAll: function () {
+                if (this.isAll) {
+                    this.checkedTags = this.tags;
+                } else {
+                    this.checkedTags = [];
+                }
+            }
+        },
+        watch: {
+            checkedTags: function () {
+                this.isAll = this.checkedTags.length === this.tags.length;
+            }
+        }
+
+    });
+</script>
+</body>
+</html>

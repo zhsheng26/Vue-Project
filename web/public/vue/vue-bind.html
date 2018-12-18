@@ -17,6 +17,33 @@
     <div>
         详细地址：{{detail}}
     </div>
+    <div>
+        过滤器：{{age|judgeAge}}
+    </div>
+    <!--条件判断-->
+    <div v-if="type>='90'">
+        优秀
+    </div>
+    <div v-else-if="type<90&type>=80">
+        良
+    </div>
+    <div v-else-if="type<80&type>=70">
+        中等
+    </div>
+    <div v-else-if="type<70&type>=60">
+        及格
+    </div>
+    <div v-else-if="type<60">
+        不及格
+    </div>
+    <div v-show="showUser">{{username}}</div>
+    <div>
+        <ul>
+            <li v-for="(v,k) in user">
+                {{k}}:{{v}}
+            </li>
+        </ul>
+    </div>
 </div>
 
 <script>
@@ -26,14 +53,21 @@
             username: "zhsheng",
             province: "AnHui",
             country: "China",
-            city: "<h1>合肥</h1>",
+            city: "<h3>合肥</h3>",
             age: 12,
-            detail: ""
+            detail: "",
+            type: 80,
+            showUser: true,
+            user: {
+                name: "andy",
+                age: 12
+            }
         },
+        //生命周期函数
         created: function () {
             this.detail = this.country + this.province
         },
-        //方法属性
+        //方法
         methods: {
             level: function () {
                 if (this.age > 18) {
@@ -63,6 +97,15 @@
             },
             province: function () {
                 this.detail = this.country + this.province
+            }
+        },
+        filters: {
+            judgeAge: function (value) {
+                if (value > 18) {
+                    return value + ",成年人"
+                } else {
+                    return value + ",未成年人"
+                }
             }
         }
     });

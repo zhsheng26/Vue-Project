@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../static/js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <hello></hello>
+    <hello :user="{username:'MingXi',age:2}"></hello>
+    <ol>
+        <!--通过属性传参给子组件-->
+        <order-item v-for="item in sites" v-bind:todo="item"></order-item>
+    </ol>
+    <!--接收子组件的事件和参数-->
+    <btn-counter @increasenum="addNumber"></btn-counter>
+    <p>次数：{{num}}</p>
+</div>
+<script>
+    <!--全局组件-->
+    Vue.component('hello', {
+        props: {
+            user: {
+                type: Object,
+                default: function () {
+                    return {
+                        username: "Andy",
+                        age: 12
+                    }
+                }
+            }
+        },
+        template: "<h3>username={{user.username}}, age={{user.age}}</h3>"
+    });
+
+    Vue.component('btn-counter', {
+        data: function () {
+            return {
+                number: 0
+            }
+        },
+        template: "<button v-on:click='clickAdd'>{{number}}</button>",
+        methods: {
+            clickAdd: function () {
+                this.number += 1;
+                //发送事件给父组件
+                this.$emit('increasenum', this.number)
+            }
+        }
+    });
+
+    let vm = new Vue({
+        el: "#app",
+        data: {
+            sites: [
+                {text: 'Runoob'},
+                {text: 'Google'},
+                {text: 'Taobao'}
+            ],
+            num: 0
+        },
+        //局部组件
+        components: {
+            'order-item': {
+                props: ['todo'],
+                template: "<li>{{todo.text}}</li>"
+            }
+        },
+        methods: {
+            addNumber: function (num) {
+                this.num = num;
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
+<script>
+
+</script>
