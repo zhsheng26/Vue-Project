@@ -44,9 +44,14 @@
             </li>
         </ul>
     </div>
+    <p v-custom-color="{color:'green'}">us-web</p>
 </div>
 
 <script>
+    //自定义指令
+    Vue.directive('custom-color', function (el, binding) {
+        el.style.color = binding.value.color
+    });
     let vm = new Vue({
         el: "#app",
         data: {
@@ -109,6 +114,7 @@
             }
         }
     });
+    Vue.set(vm.user, "address", "hefei");
 </script>
 </body>
 </html>

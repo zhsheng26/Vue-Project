@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../static/js/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <div>
+        <button @click="allPosts">ALL POSTS</button>
+    </div>
+    <form @submit.prevent="publishPost" method="post">
+        <label for="title">标题
+            <input type="text" id="title" v-model="post.title">
+        </label>
+        <label for="content">内容
+            <input type="text" id="content" v-model="post.content">
+        </label>
+        <input type="submit" value="发布">
+    </form>
+    <div>
+        <ul>
+            <li v-for="post in posts">{{post.title}}</li>
+        </ul>
+    </div>
+
+
+</div>
+<script>
+    Vue.prototype.$http = axios;
+    let vm = new Vue({
+        el: "#app",
+        data: {
+            posts: [],
+            post: {
+                title: "",
+                content: ""
+            },
+        },
+        methods: {
+            allPosts: function () {
+                this.$http.get("http://127.0.0.1:8005/post")
+                    .then(function (resp) {
+                        vm.posts = resp.data;
+                        console.log(vm.posts.length)
+                    }, function (err) {
+                    })
+            },
+            publishPost: function () {
+                let formData = JSON.stringify(vm.post);
+                this.$http.post("http://127.0.0.1:8005/post", formData)
+                    .then(function (resp) {
+                        vm.allPosts()
+                    }, function (err) {
+                        console.log(err)
+                    })
+            }
+        }
+    });
+</script>
+</body>
+</html>
