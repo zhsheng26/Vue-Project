@@ -3,8 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style type="text/css">
+        .container {
+            width: 200px;
+            height: 200px;
+            background: #42b983;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .divF {
+            width: 40px;
+            background-color: #ddccdd;
+            line-height: 40px;
+            height: 40px;
+            text-align: center;
+        }
+
+        html {
+            font-size: 10px;
+        }
+
+    </style>
 </head>
 <body>
+<div class="container">
+    <div class="divF">
+        居中
+    </div>
+</div>
+<div>
+    <div style="font-size: 10px;height: 4em;background: #42b983;display: inline-block">你好</div>
+    <div style="font-size: 10px;height: 40px;background: #42b983;display: inline-block">你好</div>
+</div>
 
+<div style="font-size: 2rem">Test-01 (12px * 1.5 = 18px)
+    <div>Test-02 (12px * 1.5 = 18px)
+        <div> Test-03 (12px * 1.5 = 18px)</div>
+    </div>
+</div>
+<div style="font-size: 20px"> Test-03 (12px * 1.5 = 18px)</div>
 </body>
 </html>
