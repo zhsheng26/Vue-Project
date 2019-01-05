@@ -13,13 +13,8 @@
 <script>
     export default {
         name: "Icons",
-        data: function () {
-            return {
-                iconList: [{
-                    id: "1",
-                    url: ""
-                }]
-            }
+        props: {
+            list: Array,
         }
     }
 </script>

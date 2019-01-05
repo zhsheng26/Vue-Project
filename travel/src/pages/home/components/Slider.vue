@@ -2,8 +2,8 @@
     <div class="wrapper">
         <swiper :options="swiperOption" v-show="showSwiper">
             <!-- slides -->
-            <swiper-slide v-for="item in list" v-bind:key="item.id">
-                <img class="swiper-img" :src="item.url">
+            <swiper-slide v-for="item of list" v-bind:key="item.id">
+                <img class="swiper-img" :src="item.imgUrl">
             </swiper-slide>
             <div class="swiper-pagination" slot="pagination"></div>
         </swiper>
@@ -18,6 +18,9 @@
 
     export default {
         name: "Swiper",
+        props: {
+            list: Array
+        },
         data: function () {
             return {
                 swiperOption: {
@@ -32,16 +35,10 @@
                         delay: 2500,
                         disableOnInteraction: false
                     }
-                },
-                list: [{
-                    id: 1,
-                    url: "https://dpic.tiankong.com/dw/ih/QJ6350482310.jpg?x-oss-process=style/670ws"
-                }, {
-                    id: 2,
-                    url: "https://dpic.tiankong.com/dw/ih/QJ6350482310.jpg?x-oss-process=style/670ws"
-                }]
+                }
             }
         },
+
         computed: {
             showSwiper: function () {
                 return this.list.length
@@ -66,14 +63,11 @@
     .wrapper
         overflow hidden
         width 100%
-        height 66.7vm
+        height 32vm
         /*height 0*/
-        /*padding-bottom 66.7%*/
+        /*padding-bottom 32%*/
         .swiper-img
             width 100%
-
-    /*height 0*/
-    /*padding-bottom 34.7%*/
 
 
 </style>
