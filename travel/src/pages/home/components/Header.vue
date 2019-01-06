@@ -3,7 +3,7 @@
         <div class="left">
             <div class="iconfont back-icon">&#xe63b;</div>
         </div>
-        <div class="input"><span class="iconfont search-icon">&#xe6a8;</span>请输入内容</div>
+        <div class="input"><span class="iconfont search-icon">&#xe6a8;</span>杨艳是🐖</div>
         <div class="right">{{city}}<span class="iconfont arrow-icon">&#xe64a;</span></div>
     </div>
 </template>

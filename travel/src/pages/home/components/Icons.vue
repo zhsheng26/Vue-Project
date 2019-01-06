@@ -51,6 +51,8 @@
         overflow hidden
         height 0
         padding-bottom 50%
+        margin-top .1rem
+        margin-bottom .1rem
         .icon
             position relative
             overflow hidden
