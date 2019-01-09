@@ -4,7 +4,9 @@
             <div class="iconfont back-icon">&#xe63b;</div>
         </div>
         <div class="input"><span class="iconfont search-icon">&#xe6a8;</span>杨艳是🐖</div>
-        <div class="right">{{city}}<span class="iconfont arrow-icon">&#xe64a;</span></div>
+        <router-link to="/city">
+            <div class="right">{{city}}<span class="iconfont arrow-icon">&#xe64a;</span></div>
+        </router-link>
     </div>
 </template>
 
@@ -46,6 +48,7 @@
 
         .right
             width: 1.24rem
+            color #ffffff
             .arrow-icon
                 font-size .24rem
                 margin-left .1rem
