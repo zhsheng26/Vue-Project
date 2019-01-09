@@ -4,6 +4,7 @@
         <home-slider :list="sliderList"></home-slider>
         <home-icons :list="iconList"></home-icons>
         <home-recommend :list="recommendList"></home-recommend>
+        <home-weekend :list="weekendList"></home-weekend>
     </div>
 </template>
 
@@ -11,7 +12,8 @@
     import HomeHeader from './components/Header.vue'
     import HomeSlider from './components/Slider.vue'
     import HomeIcons from './components/Icons.vue'
-    import HomeRecommend from './components/Recommend'
+    import HomeRecommend from './components/Recommend.vue'
+    import HomeWeekend from './components/Weekend.vue'
     import axios from 'axios'
 
     export default {
@@ -20,14 +22,16 @@
             HomeHeader,
             HomeSlider,
             HomeIcons,
-            HomeRecommend
+            HomeRecommend,
+            HomeWeekend
         },
         data: function () {
             return {
                 city: "",
                 sliderList: [],
                 iconList: [],
-                recommendList: []
+                recommendList: [],
+                weekendList: []
             }
         },
         methods: {
@@ -41,6 +45,7 @@
                             this.sliderList = content.swiperList;
                             this.iconList = content.iconList;
                             this.recommendList = content.recommendList;
+                            this.weekendList = content.weekendList;
                         }
                     })
                     .catch(function (error) {
