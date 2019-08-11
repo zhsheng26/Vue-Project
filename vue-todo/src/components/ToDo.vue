@@ -23,7 +23,7 @@
         props: {
             msg: String
         },
-        data() {
+        data: function () {
             return {
                 inputValue: "",
                 items: [
